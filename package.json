@@ -7,14 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test":"playwright test",
-    "show-report":"playwright show-report",
+    "test": "playwright test",
+    "show-report": "playwright show-report",
     "db:generate": "drizzle-kit generate --config=./drizzle.config.ts",
     "db:migrate": "drizzle-kit migrate --config=./drizzle.config.ts",
     "db:studio": "drizzle-kit studio --config=./drizzle.config.ts"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
+    "@radix-ui/react-dropdown-menu": "^2.1.1",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
     "@t3-oss/env-nextjs": "^0.10.1",
     "arctic": "^1.9.2",
     "class-variance-authority": "^0.7.0",
@@ -28,6 +32,7 @@
     "postgres": "^3.4.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.52.1",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
