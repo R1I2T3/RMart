@@ -6,6 +6,8 @@ export const env = createEnv({
     NODE_ENV: z.string(),
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
+    EMAIL_USERNAME: z.string().min(1),
+    EMAIL_PASSWORD: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_GOOGLE_REDIRECT_URL: z.string().url(),
@@ -15,6 +17,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     GOOGLE_CLIENT_ID: process.env.NODE_ENV,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    EMAIL_USERNAME: process.env.EMAIL_USERNAME,
+    EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
     NEXT_PUBLIC_GOOGLE_REDIRECT_URL:
       process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URL,
   },

@@ -7,11 +7,24 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import SocialAuthFooter from "@/components/SocialAuthFooter";
 import Link from "next/link";
-const LoginForm = () => {
-  const form = useForm();
+import { signupSchema, signupType } from "@/lib/zod/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signupAction } from "./action";
+const SignupForm = () => {
+  const form = useForm<signupType>({
+    resolver: zodResolver(signupSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
+  });
+  const onSubmit = async (values: signupType) => {
+    await signupAction(values);
+  };
   return (
     <Form {...form}>
-      <form className="w-full space-y-4">
+      <form className="w-full space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <FormProvider {...form}>
           <InputFormControl label="Email" name="email" />
           <InputFormControl label="Username" name="username" />
@@ -35,4 +48,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
