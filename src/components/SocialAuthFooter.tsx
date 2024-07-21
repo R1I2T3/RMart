@@ -6,9 +6,9 @@ const SocialAuthFooter = () => {
   return (
     <>
       <div className="flex flex-row justify-between items-center">
-        <Separator className="w-[45%]" />
+        <Separator className="w-[45%] bg-green-500" />
         <p>OR</p>
-        <Separator className="w-[45%]" />
+        <Separator className="w-[45%] bg-green-500" />
       </div>
       <Button variant={"outline"} className="w-full h-[45px] bg-white">
         <Image
