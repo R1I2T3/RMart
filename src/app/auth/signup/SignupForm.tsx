@@ -10,6 +10,8 @@ import Link from "next/link";
 import { signupSchema, signupType } from "@/lib/zod/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupAction } from "./action";
+import { toast } from "sonner";
+import { useAction } from "next-safe-action/hooks";
 const SignupForm = () => {
   const form = useForm<signupType>({
     resolver: zodResolver(signupSchema),
@@ -19,8 +21,13 @@ const SignupForm = () => {
       password: "",
     },
   });
+  const { execute, result, isExecuting } = useAction(signupAction);
   const onSubmit = async (values: signupType) => {
-    await signupAction(values);
+    execute(values);
+
+    if (result.data?.useCaseError) {
+      toast.error(result.data.useCaseError);
+    }
   };
   return (
     <Form {...form}>
@@ -38,8 +45,11 @@ const SignupForm = () => {
             </Link>
           </div>
 
-          <Button className="bg-green-500  hover:bg-green-600 dark:bg-green-600 w-full text-white text-xl">
-            Signup
+          <Button
+            className="bg-green-500  hover:bg-green-600 dark:bg-green-600 w-full text-white text-xl"
+            disabled={isExecuting}
+          >
+            {isExecuting ? "pending..." : "Signup"}
           </Button>
           <SocialAuthFooter />
         </FormProvider>

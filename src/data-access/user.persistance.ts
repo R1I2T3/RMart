@@ -1,7 +1,7 @@
 import "server-only";
 
 import { db } from "@/lib/db";
-import { emailUser, user } from "@/lib/db/schema";
+import { emailUser, user, VerificationCode } from "@/lib/db/schema";
 import { eq, or } from "drizzle-orm";
 import { createUserArgsType } from "@/types/auth";
 export const isUserPresent = async (email: string, username: string) => {
@@ -31,4 +31,47 @@ export const createUser = async ({
   )[0];
   await db.insert(emailUser).values({ email, password });
   return newUser;
+};
+
+export const CheckUserIfPresentThenReturnOtp = async ({
+  username,
+}: {
+  username: string;
+}) => {
+  const currentUser = (
+    await db.select().from(user).where(eq(user.username, username))
+  )[0];
+  if (!currentUser) {
+    return { error: "user with this username does not exists" };
+  }
+
+  const verificationCode = (
+    await db
+      .select()
+      .from(VerificationCode)
+      .where(eq(VerificationCode.userId, currentUser.id))
+  )[0];
+  if (
+    !verificationCode ||
+    !verificationCode.id ||
+    !verificationCode.expiry ||
+    !verificationCode.verificationCode
+  ) {
+    return { error: "Their is no otp associated with following account" };
+  }
+  return { verificationCode };
+};
+
+export const DeleteVerificationCodeAndVerifyUser = async ({
+  id,
+  username,
+}: {
+  id: string;
+  username: string;
+}) => {
+  await db
+    .update(user)
+    .set({ isVerified: true })
+    .where(eq(user.username, username));
+  await db.delete(VerificationCode).where(eq(VerificationCode.id, id));
 };

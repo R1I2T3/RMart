@@ -7,7 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import VerifyAccount from "./Verify_account";
-const LoginPage = () => {
+
+interface VerifyAccountPageProps {
+  searchParams: {
+    username: string;
+  };
+}
+const VerifyAccountPage = ({ searchParams }: VerifyAccountPageProps) => {
   return (
     <Card className="w-[90%] md:w-[50%] lg:w-[40%]">
       <CardHeader>
@@ -17,10 +23,10 @@ const LoginPage = () => {
       </CardHeader>
       <CardContent></CardContent>
       <CardFooter>
-        <VerifyAccount />
+        <VerifyAccount username={searchParams.username} />
       </CardFooter>
     </Card>
   );
 };
 
-export default LoginPage;
+export default VerifyAccountPage;

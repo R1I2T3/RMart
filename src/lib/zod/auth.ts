@@ -13,4 +13,10 @@ export const signupSchema = z.object({
     .min(6, { message: "password length should be greater than 6" }),
 });
 
+export const verifyOtpSchema = z.object({
+  pin: z.string().min(6, {
+    message: "Your one-time password must be 6 characters.",
+  }),
+});
+export type verifyOtpType = z.infer<typeof verifyOtpSchema>;
 export type signupType = z.infer<typeof signupSchema>;

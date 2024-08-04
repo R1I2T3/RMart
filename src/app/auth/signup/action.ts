@@ -9,10 +9,13 @@ import { redirect } from "next/navigation";
 export const signupAction = actionClient
   .schema(signupSchema)
   .action(async ({ parsedInput }) => {
-    const { username, userId } = await signupUseCase({
+    const { username, userId, error } = await signupUseCase({
       context: { createUser: createUser, isUserPresent: isUserPresent },
       data: parsedInput,
     });
+    if (error) {
+      return { useCaseError: error };
+    }
     await SendVerificationCode({
       id: userId!,
       email: parsedInput.email!,

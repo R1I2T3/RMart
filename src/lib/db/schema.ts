@@ -17,6 +17,7 @@ export const user = pgTable("users", {
   email: text("email").unique().notNull(),
   userType: text("user_type").default("customer"),
   createdAt: timestamp("created_at").defaultNow(),
+  isVerified: boolean("is_verified").default(false),
 });
 
 // auth table
@@ -24,7 +25,6 @@ export const emailUser = pgTable("email_users", {
   id: uuid("id").primaryKey().defaultRandom(),
   email: text("email").references(() => user.email),
   password: text("password").notNull(),
-  isVerified: boolean("is_verified").default(false),
 });
 
 export const googleOauthUser = pgTable("google_oauth_users", {

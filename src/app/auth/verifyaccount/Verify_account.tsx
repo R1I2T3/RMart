@@ -2,46 +2,39 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
-import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import OTP from "@/components/FormControl/otp";
-// import { toast } from "@/components/ui/use-toast"
-
-const FormSchema = z.object({
-  pin: z.string().min(6, {
-    message: "Your one-time password must be 6 characters.",
-  }),
-});
-
-const VerifyAccount = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+import { toast } from "sonner";
+import { verifyOtpSchema, verifyOtpType } from "@/lib/zod/auth";
+import { useAction } from "next-safe-action/hooks";
+import { verifyAccountAction } from "./action";
+const VerifyAccount = ({ username }: { username: string }) => {
+  const form = useForm<verifyOtpType>({
+    resolver: zodResolver(verifyOtpSchema),
     defaultValues: {
       pin: "",
     },
   });
-
-  // function onSubmit(data: z.infer<typeof FormSchema>) {
-  //   toast({
-  //     title: "You submitted the following values:",
-  //     description: (
-  //       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-  //         <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-  //       </pre>
-  //     ),
-  //   })
-  // }
+  const { result, execute, isExecuting } = useAction(verifyAccountAction);
+  const onSubmit = async (values: verifyOtpType) => {
+    await execute({ pin: values.pin, username: username });
+    if (result.data?.error) {
+      toast.error(result.data.error);
+    }
+  };
 
   return (
     <Form {...form}>
-      <form className="w-full space-y-6">
+      <form className="w-full space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
         <FormProvider {...form}>
           <OTP />
         </FormProvider>
-        <Button className="bg-green-500  hover:bg-green-600 dark:bg-green-600 w-full text-white text-xl">
-          Verify account
+        <Button
+          className="bg-green-500  hover:bg-green-600 dark:bg-green-600 w-full text-white text-xl"
+          disabled={isExecuting}
+        >
+          {isExecuting ? "Verifying account" : "Verify account"}
         </Button>
       </form>
     </Form>
