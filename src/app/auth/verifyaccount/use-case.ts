@@ -40,5 +40,8 @@ export const VerifyAccountUseCase = async ({
     id: verificationCode.id,
     username: username,
   });
-  return { success: "Account verified successfully" };
+  return {
+    success: "Account verified successfully",
+    userId: verificationCode.userId,
+  };
 };

@@ -4,14 +4,14 @@ import { createUserArgsType } from "@/types/auth";
 import { scrypt } from "@/lib/auth/utils";
 import { generateIdFromEntropySize } from "lucia";
 import { createUser } from "@/data-access/user.persistance";
-
+import { userSelectType } from "@/lib/db/schema";
 type createUserReturnType = {
   username: string;
   userType: string | null;
 };
 interface SignupUseCaseType {
   context: {
-    isUserPresent: (email: string, username: string) => Promise<boolean>;
+    isUserPresent: (email: string, username: string) => Promise<userSelectType>;
     createUser: (data: createUserArgsType) => Promise<createUserReturnType>;
   };
   data: signupType;

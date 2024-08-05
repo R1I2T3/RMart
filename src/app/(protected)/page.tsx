@@ -1,16 +1,13 @@
-"use client";
-import { useTheme } from "next-themes";
 import React from "react";
-const HomePage = () => {
-  const { setTheme } = useTheme();
-  return (
-    <button
-      onClick={() => setTheme("dark")}
-      className="dark:border-white border-2"
-    >
-      HomePage
-    </button>
-  );
+import { redirect } from "next/navigation";
+import { validateRequest } from "@/lib/auth/VerifyUserisAuthenticatedOrNot";
+const HomePage = async () => {
+  const { user } = await validateRequest();
+
+  if (!user) {
+    return redirect("/auth/login");
+  }
+  return <button className="dark:border-white border-2">HomePage</button>;
 };
 
 export default HomePage;

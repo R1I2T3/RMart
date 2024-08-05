@@ -18,5 +18,10 @@ export const verifyOtpSchema = z.object({
     message: "Your one-time password must be 6 characters.",
   }),
 });
+export const LoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
 export type verifyOtpType = z.infer<typeof verifyOtpSchema>;
 export type signupType = z.infer<typeof signupSchema>;
+export type LoginType = z.infer<typeof LoginSchema>;

@@ -11,10 +11,7 @@ export const isUserPresent = async (email: string, username: string) => {
       .from(user)
       .where(or(eq(user.email, email), eq(user.username, username)))
   )[0];
-  if (currentUser) {
-    return true;
-  }
-  return false;
+  return currentUser;
 };
 
 export const createUser = async ({
@@ -74,4 +71,15 @@ export const DeleteVerificationCodeAndVerifyUser = async ({
     .set({ isVerified: true })
     .where(eq(user.username, username));
   await db.delete(VerificationCode).where(eq(VerificationCode.id, id));
+};
+
+export const CheckIfUserIsPresent = async ({ email }: { email: string }) => {
+  const currentUser = (
+    await db
+      .select()
+      .from(user)
+      .innerJoin(emailUser, eq(emailUser.email, email))
+      .where(eq(user.email, email))
+  )[0];
+  return currentUser;
 };

@@ -8,7 +8,7 @@ import {
   numeric,
   integer,
 } from "drizzle-orm/pg-core";
-
+import { type InferSelectModel, type InferInsertModel } from "drizzle-orm";
 // user table
 
 export const user = pgTable("users", {
@@ -19,7 +19,7 @@ export const user = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow(),
   isVerified: boolean("is_verified").default(false),
 });
-
+export type userSelectType = InferSelectModel<typeof user>;
 // auth table
 export const emailUser = pgTable("email_users", {
   id: uuid("id").primaryKey().defaultRandom(),

@@ -7,11 +7,29 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import SocialAuthFooter from "@/components/SocialAuthFooter";
 import Link from "next/link";
+import { LoginAction } from "./action";
+import { useAction } from "next-safe-action/hooks";
+import { LoginSchema, LoginType } from "@/lib/zod/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 const LoginForm = () => {
-  const form = useForm();
+  const form = useForm<LoginType>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  const { execute, isExecuting, result } = useAction(LoginAction);
+  const onSubmit = async (values: LoginType) => {
+    execute(values);
+    if (result.data?.error) {
+      toast.error(result.data.error);
+    }
+  };
   return (
     <Form {...form}>
-      <form className="w-full space-y-4">
+      <form className="w-full space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <FormProvider {...form}>
           <InputFormControl label="Email" name="email" />
           <InputFormControl label="Password" name="password" />
@@ -30,7 +48,7 @@ const LoginForm = () => {
             </Link>
           </div>
           <Button className="bg-green-500 hover:bg-green-700 dark:bg-green-600 w-full text-white text-xl">
-            Login
+            {isExecuting ? "Login..." : "Login"}
           </Button>
           <SocialAuthFooter />
         </FormProvider>
