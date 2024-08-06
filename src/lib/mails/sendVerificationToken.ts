@@ -5,7 +5,7 @@ import VerificationEmail from "./templates/verificationCodeEmailTemplate";
 import { db } from "../db";
 import { VerificationCode } from "../db/schema";
 
-interface VerificationParameters {
+export interface VerificationParameters {
   id: string;
   email: string;
   username: string;

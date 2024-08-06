@@ -1,7 +1,6 @@
 "use server";
 import { actionClient } from "@/lib/safe-action";
 import { VerifyAccountUseCase } from "./use-case";
-import { z } from "zod";
 import {
   CheckUserIfPresentThenReturnOtp,
   DeleteVerificationCodeAndVerifyUser,
@@ -9,10 +8,7 @@ import {
 import { redirect } from "next/navigation";
 import { lucia } from "@/lib/auth";
 import { cookies } from "next/headers";
-const VerifyAccountActionSchema = z.object({
-  username: z.string(),
-  pin: z.string().min(6),
-});
+import { VerifyAccountActionSchema } from "@/lib/zod/auth";
 export const verifyAccountAction = actionClient
   .schema(VerifyAccountActionSchema)
   .action(async ({ parsedInput }) => {

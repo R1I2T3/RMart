@@ -13,7 +13,9 @@ export const isUserPresent = async (email: string, username: string) => {
   )[0];
   return currentUser;
 };
-
+export const getUserById = async (id: string) => {
+  return (await db.select().from(user).where(eq(user.id, id)))[0];
+};
 export const createUser = async ({
   id,
   username,
@@ -82,4 +84,17 @@ export const CheckIfUserIsPresent = async ({ email }: { email: string }) => {
       .where(eq(user.email, email))
   )[0];
   return currentUser;
+};
+
+export const UpdatePassword = async ({
+  newHashedPassword,
+  email,
+}: {
+  newHashedPassword: string;
+  email: string;
+}) => {
+  await db
+    .update(emailUser)
+    .set({ password: newHashedPassword })
+    .where(eq(emailUser.email, email));
 };
