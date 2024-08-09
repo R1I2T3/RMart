@@ -74,6 +74,7 @@ export async function GET(request: Request): Promise<Response> {
         username: googleUser.email.slice(0, googleUser.email.indexOf("@")),
         email: googleUser.email,
         id: userId,
+        isVerified: true,
       });
     }
     await db.insert(googleOauthUser).values({

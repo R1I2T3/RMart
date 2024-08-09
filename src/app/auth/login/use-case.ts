@@ -1,5 +1,5 @@
 import "server-only";
-import { scrypt } from "@/lib/auth/utils";
+import bcrypt from "bcrypt";
 
 interface LoginUseCaseTypes {
   data: {
@@ -18,10 +18,11 @@ export const LoginUseCase = async ({ data, context }: LoginUseCaseTypes) => {
     return { error: "Invalid credentials" };
   }
 
-  const isPasswordCorrect = await scrypt.verify(
-    user?.email_users.password,
-    data.password
+  const isPasswordCorrect = await bcrypt.compare(
+    data.password,
+    user?.email_users.password
   );
+
   if (!isPasswordCorrect) {
     return { error: "Invalid Credentials" };
   }

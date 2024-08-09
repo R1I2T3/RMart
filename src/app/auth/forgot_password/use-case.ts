@@ -1,7 +1,7 @@
 import "server-only";
 import { VerificationParameters } from "@/lib/mails/sendVerificationToken";
 import { userSelectType } from "@/lib/db/schema";
-import { scrypt } from "@/lib/auth/utils";
+import bcrypt from "bcrypt";
 interface ForgotPasswordEmailInputUseCaseType {
   data: { email: string };
   context: {
@@ -49,7 +49,7 @@ export const NewPasswordInputUseCase = async ({
   if (!currentUser) {
     return { error: "Invalid cookie" };
   }
-  const hashedPassword = await scrypt.hash(data.password);
+  const hashedPassword = await bcrypt.hash(data.password, 10);
   await context.UpdatePassword({
     newHashedPassword: hashedPassword,
     email: currentUser.email,
