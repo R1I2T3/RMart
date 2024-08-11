@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
 import { Toaster } from "@/components/ui/sonner";
+import AuthContextProvider from "@/components/AuthContextProvider";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -34,9 +35,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          {children}
-          <Toaster />
+          <AuthContextProvider>
+            <Header />
+            {children}
+            <Toaster />
+          </AuthContextProvider>
         </ThemeProvider>
       </body>
     </html>

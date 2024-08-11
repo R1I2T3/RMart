@@ -29,7 +29,7 @@ declare module "lucia" {
   }
 }
 
-interface DatabaseUserAttributes {
+export interface DatabaseUserAttributes {
   username: string;
   googleId?: string;
   userType: string;
