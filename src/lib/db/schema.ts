@@ -77,6 +77,7 @@ export const product = pgTable(
     price: numeric("price").notNull(),
     quantity: integer("quantity").notNull(),
     categoryId: uuid("category_id").references(() => category.id),
+    productImage: text("productImage").notNull(),
     created_at: timestamp("created_at").defaultNow(),
   },
   (table) => ({

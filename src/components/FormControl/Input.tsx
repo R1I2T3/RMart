@@ -8,17 +8,39 @@ import {
 } from "@/components/ui/form";
 import { Input } from "../ui/input";
 import { useFormContext } from "react-hook-form";
-const InputFormControl = ({ label, name }: { label: string; name: string }) => {
-  const { control } = useFormContext();
+const InputFormControl = ({
+  label,
+  name,
+  type = "text",
+}: {
+  label: string;
+  name: string;
+  type?: string;
+}) => {
+  const form = useFormContext();
   return (
     <FormField
-      control={control}
+      control={form.control}
       name={name}
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-md font-semibold">{label}</FormLabel>
           <FormControl>
-            <Input placeholder={`Enter your ${name}`} {...field} />
+            {type === "file" ? (
+              <Input
+                type="file"
+                onChange={(e) => {
+                  const file = e.target.files ? e.target.files[0] : null;
+                  field.onChange(file); // Handle file input change
+                }}
+              />
+            ) : (
+              <Input
+                placeholder={`Enter the ${label}`}
+                {...field}
+                type={type}
+              />
+            )}
           </FormControl>
           <FormMessage />
         </FormItem>

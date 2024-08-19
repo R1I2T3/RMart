@@ -9,3 +9,11 @@ export const authActionClient = actionClient.use(async ({ next }) => {
   }
   return next({ ctx: { userId: user.id, sessionId: session.id } });
 });
+
+export const adminAction = actionClient.use(async ({ next }) => {
+  const { user, session } = await validateRequest();
+  if (!user && user?.userType !== "admin") {
+    throw new Error("Session is not valid!");
+  }
+  return next({ ctx: { userId: user.id, sessionId: session?.id } });
+});

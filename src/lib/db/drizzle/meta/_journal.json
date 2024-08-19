@@ -15,6 +15,13 @@
       "when": 1722789339362,
       "tag": "0001_sparkling_the_initiative",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1723994817307,
+      "tag": "0002_light_felicia_hardy",
+      "breakpoints": true
     }
   ]
 }
