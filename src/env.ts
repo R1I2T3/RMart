@@ -8,6 +8,9 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     EMAIL_USERNAME: z.string().min(1),
     EMAIL_PASSWORD: z.string().min(1),
+    CLOUDINARY_CLOUD_NAME: z.string().min(1),
+    CLOUDINARY_API_KEY: z.string().min(1),
+    CLOUDINARY_API_SECRET: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_GOOGLE_REDIRECT_URL: z.string().url(),
@@ -21,5 +24,8 @@ export const env = createEnv({
     EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
     NEXT_PUBLIC_GOOGLE_REDIRECT_URL:
       process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URL,
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+    CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
   },
 });

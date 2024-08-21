@@ -28,6 +28,7 @@
     "arctic": "^1.9.2",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^2.4.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.32.0",
     "input-otp": "^1.2.4",
@@ -44,7 +45,8 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zod-form-data": "^2.0.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.45.2",

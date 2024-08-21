@@ -9,15 +9,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createProductSchema, createProductType } from "@/lib/zod/admin";
 import SelectFormControl from "@/components/FormControl/Select";
 import { categories } from "@/constants";
-import {
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { objectToFormData } from "@/utils";
+import { CreateProductAction } from "../_actions/create-product";
+import { useAction } from "next-safe-action/hooks";
+import { toast } from "sonner";
 const AddProductForm = () => {
+  const { executeAsync, isExecuting, result } = useAction(CreateProductAction);
   const form = useForm<createProductType>({
     resolver: zodResolver(createProductSchema),
     defaultValues: {
@@ -28,8 +25,13 @@ const AddProductForm = () => {
       category: "",
     },
   });
-  const onSubmit = (values: createProductType) => {
-    console.log(values);
+  const onSubmit = async (values: createProductType) => {
+    await executeAsync(objectToFormData(values));
+    if (result.serverError || result.validationErrors) {
+      const errorMessage = "Some server side error taken place";
+      toast.error(errorMessage);
+    }
+    toast.success(result.data?.message || "Product added to database");
   };
   return (
     <Form {...form}>
@@ -55,24 +57,12 @@ const AddProductForm = () => {
             placeholder="Enter the description of product"
           />
         </FormProvider>
-        {/* <FormField
-      control={form.control}
-      name={"image"}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel className="text-md font-semibold">Product Image</FormLabel>
-          <FormControl>
-            <Input placeholder={`Enter the ${label}`} {...field} type={"file"} />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    /> */}
         <Button
           className="w-full bg-green-500 my-3 p-2 hover:bg-green-600"
           type="submit"
+          disabled={isExecuting}
         >
-          Add product
+          {isExecuting ? "Adding Product" : "Add product"}
         </Button>
       </form>
     </Form>
