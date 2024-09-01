@@ -1,13 +1,6 @@
 import { z } from "zod";
 import { zfd } from "zod-form-data";
-const FileSchema = z
-  .instanceof(File)
-  .refine((file) => file.type.startsWith("image/"), {
-    message: "File must be an image",
-  })
-  .refine((file) => file.size < 1024 * 1024 * 2, {
-    message: "File must be less than 2 MB",
-  });
+
 export const createProductSchema = zfd.formData({
   name: z.string().min(1, { message: "Product Name is required" }),
   description: z
@@ -21,4 +14,7 @@ export const createProductSchema = zfd.formData({
   category: z.string(),
 });
 
+export const deleteProductSchema = z.object({
+  productId: z.string().uuid(),
+});
 export type createProductType = z.infer<typeof createProductSchema>;

@@ -16,7 +16,6 @@ const VerifyAccount = () => {
   const { execute, isExecuting, result } = useAction(
     ForgotPasswordVerifyEmailAction
   );
-  console.log(searchParam.get("username"));
 
   const form = useForm<verifyOtpType>({
     resolver: zodResolver(verifyOtpSchema),

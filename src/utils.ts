@@ -20,3 +20,26 @@ export function objectToFormData(obj: Record<string, any>): FormData {
 
   return formData;
 }
+
+export function formatDate(date: Date): string {
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const dayOfWeek = days[date.getDay()];
+  const month = months[date.getMonth()];
+
+  return `${dayOfWeek} ${month}`;
+}

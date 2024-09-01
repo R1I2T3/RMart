@@ -23,3 +23,12 @@ export const createProduct = async (data: createProductTypes) => {
   await db.insert(product).values(data);
   return { message: "Product created successfully" };
 };
+
+export const deleteProduct = async (productId: string) => {
+  try {
+    await db.delete(product).where(eq(product.id, productId));
+    return { success: "Product deleted successfully" };
+  } catch (error) {
+    return { error };
+  }
+};

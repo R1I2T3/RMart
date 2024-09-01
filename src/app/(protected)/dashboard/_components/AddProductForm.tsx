@@ -13,8 +13,10 @@ import { objectToFormData } from "@/utils";
 import { CreateProductAction } from "../_actions/create-product";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 const AddProductForm = () => {
   const { executeAsync, isExecuting, result } = useAction(CreateProductAction);
+  const router = useRouter();
   const form = useForm<createProductType>({
     resolver: zodResolver(createProductSchema),
     defaultValues: {
@@ -32,6 +34,7 @@ const AddProductForm = () => {
       toast.error(errorMessage);
     }
     toast.success(result.data?.message || "Product added to database");
+    router.replace("/product");
   };
   return (
     <Form {...form}>
