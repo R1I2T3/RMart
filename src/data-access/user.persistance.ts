@@ -3,7 +3,7 @@ import "server-only";
 import { db } from "@/lib/db";
 import { emailUser, user, VerificationCode } from "@/lib/db/schema";
 import { eq, or } from "drizzle-orm";
-import { createUserArgsType } from "@/types/auth";
+import { createUserArgsType } from "@/types";
 export const isUserPresent = async (email: string, username: string) => {
   const currentUser = (
     await db

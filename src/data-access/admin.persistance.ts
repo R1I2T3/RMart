@@ -19,6 +19,9 @@ interface createProductTypes {
   categoryId: string;
   productImage: string;
 }
+interface updateProductTypes extends createProductTypes {
+  productId: string;
+}
 export const createProduct = async (data: createProductTypes) => {
   await db.insert(product).values(data);
   return { message: "Product created successfully" };
@@ -28,6 +31,18 @@ export const deleteProduct = async (productId: string) => {
   try {
     await db.delete(product).where(eq(product.id, productId));
     return { success: "Product deleted successfully" };
+  } catch (error) {
+    return { error };
+  }
+};
+
+export const updateProduct = async (updateProductData: updateProductTypes) => {
+  try {
+    await db
+      .update(product)
+      .set({ ...updateProductData })
+      .where(eq(product.id, updateProductData.productId));
+    return { success: "Product updated successfully" };
   } catch (error) {
     return { error };
   }

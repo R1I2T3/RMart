@@ -1,6 +1,6 @@
 import "server-only";
 import { signupType } from "@/lib/zod/auth";
-import { createUserArgsType } from "@/types/auth";
+import { createUserArgsType } from "@/types";
 import { generateIdFromEntropySize } from "lucia";
 import { createUser } from "@/data-access/user.persistance";
 import { userSelectType } from "@/lib/db/schema";

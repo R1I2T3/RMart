@@ -43,3 +43,17 @@ export function formatDate(date: Date): string {
 
   return `${dayOfWeek} ${month}`;
 }
+
+export function getUpdatedValues(
+  oldObj: Record<string, any>,
+  newObj: Record<string, any>
+): Record<string, any> {
+  const updatedValues: Record<string, any> = {};
+  for (const key in newObj) {
+    if (oldObj[key] !== newObj[key]) {
+      updatedValues[key] = newObj[key];
+    }
+  }
+
+  return updatedValues;
+}

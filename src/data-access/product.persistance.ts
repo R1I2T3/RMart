@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { category, product } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { updateProductType } from "@/lib/zod/admin";
 export const getProductById = async (id: string) => {
   try {
     const currentProduct = (
