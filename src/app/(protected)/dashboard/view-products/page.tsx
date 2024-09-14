@@ -3,7 +3,13 @@ import { ProductTable } from "../_components/ProductTable";
 import { getProducts } from "@/data-access/product.persistance";
 import { redirect } from "next/navigation";
 const ViewProductPage = async () => {
-  const { products, error } = await getProducts();
+  const { products, error } = await getProducts({
+    product_category: "",
+    q: "",
+    offset: 0,
+  });
+  console.log(error);
+
   if (error || typeof products === "undefined") {
     return redirect("/");
   }

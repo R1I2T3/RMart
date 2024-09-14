@@ -34,7 +34,7 @@ const AddProductForm = () => {
       toast.error(errorMessage);
     }
     toast.success(result.data?.message || "Product added to database");
-    router.replace("/product");
+    router.replace("/dashboard/view-products");
   };
   return (
     <Form {...form}>

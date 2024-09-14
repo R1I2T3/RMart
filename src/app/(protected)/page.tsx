@@ -1,8 +1,38 @@
 import React from "react";
-import { redirect } from "next/navigation";
-import { validateRequest } from "@/lib/auth/VerifyUserisAuthenticatedOrNot";
-const HomePage = async () => {
-  return <button className="dark:border-white border-2">HomePage</button>;
+import { getProducts } from "@/data-access/product.persistance";
+import { notFound } from "next/navigation";
+import HomeScreenSearchBar from "./_components/SearchBar";
+import ProductSection from "./_components/ProductSection";
+import CategorySelect from "./_components/CategorySelect";
+interface HomePageProps {
+  searchParams: {
+    q: string;
+    category: string;
+  };
+}
+const HomePage = async ({ searchParams: { q, category } }: HomePageProps) => {
+  const { products, error } = await getProducts({
+    product_category: category,
+    q,
+    offset: 0,
+  });
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <HomeScreenSearchBar search={q} />
+      <CategorySelect />
+      <li
+        key={Math.random()}
+        className="w-[100%] h-full m-auto list-none my-10"
+      >
+        <ProductSection
+          initialData={products}
+          q={q}
+          category={category}
+          error={error}
+        />
+      </li>
+    </div>
+  );
 };
 
 export default HomePage;

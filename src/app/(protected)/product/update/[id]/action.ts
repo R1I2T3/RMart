@@ -11,7 +11,6 @@ import { redirect } from "next/navigation";
 export const updateProductAction = adminAction
   .schema(updateProductSchema)
   .action(async ({ parsedInput }) => {
-    console.log(parsedInput);
     const { currentProduct, error: getProductError } = await getProductById(
       parsedInput.productId
     );

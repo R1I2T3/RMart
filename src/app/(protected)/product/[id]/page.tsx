@@ -13,7 +13,6 @@ const ProductPage = async ({ params }: ProductPageTypes) => {
   if (error) {
     return redirect("/");
   }
-  console.log(currentProduct);
 
   return (
     <div className="w-[80%]  m-auto flex flex-col md:flex-row justify-center lg:justify-between items-center gap-10">
