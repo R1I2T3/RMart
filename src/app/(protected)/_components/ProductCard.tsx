@@ -22,7 +22,7 @@ const ProductCard = (props: ProductCardProps) => {
         width={400}
         className="size-[60%] rounded-2xl"
       />
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-3 text-md text-no-wrap">
         <h2>
           <strong>Name:</strong>
           {props.name}

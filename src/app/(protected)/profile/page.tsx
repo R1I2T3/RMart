@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { User, Mail, Calendar, Github, Twitter } from "lucide-react";
+import { User, Mail, Calendar } from "lucide-react";
 import { validateRequest } from "@/lib/auth/VerifyUserisAuthenticatedOrNot";
 import { redirect } from "next/navigation";
 import { getUserById } from "@/data-access/user.persistance";
