@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { Cart, CartItems } from "@/lib/db/schema";
+import { Cart, CartItems, product } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
 
 export const isCartPresent = async (userId: string) => {
@@ -51,4 +51,38 @@ export const IncrementCartItem = async (
     .update(CartItems)
     .set({ quantity: currentQuantity + 1 })
     .where(eq(CartItems.id, cartItemId));
+};
+
+export const getCartItems = async (userId: string) => {
+  const cartItems = await db
+    .select({
+      cartId: Cart.id,
+      cartItemsId: CartItems.id,
+      quantity: CartItems.quantity,
+      name: product.name,
+      price: product.price,
+      productImage: product.productImage,
+      productId: product.id,
+    })
+    .from(Cart)
+    .where(eq(Cart.userId, userId))
+    .innerJoin(CartItems, eq(CartItems.cartId, Cart.id))
+    .innerJoin(product, eq(product.id, CartItems.productId));
+  return cartItems;
+};
+
+export const decrementCartItem = async (
+  cartItemId: string,
+  currentQuantity: number
+) => {
+  if (currentQuantity > 1) {
+    await db
+      .update(CartItems)
+      .set({ quantity: currentQuantity - 1 })
+      .where(eq(CartItems.id, cartItemId));
+  }
+};
+
+export const DeleteCartItem = async (cartItemId: string) => {
+  await db.delete(CartItems).where(eq(CartItems.id, cartItemId));
 };

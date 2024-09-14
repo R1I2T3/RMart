@@ -13,7 +13,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 const ProfileSideBar = () => {
   return (
-    <div className="w-[20%]">
+    <div className="w-[10%]">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline">
