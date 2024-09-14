@@ -13,7 +13,7 @@ const AddToCartButton = ({ productId }: { productId: string }) => {
     if (result.fetchError || result.serverError) {
       console.log(result);
     } else {
-      toast.success(result.data?.message);
+      toast.success("Item added to cart");
     }
   };
   return (
