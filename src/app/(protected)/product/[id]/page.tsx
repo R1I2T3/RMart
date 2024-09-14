@@ -2,7 +2,7 @@ import React from "react";
 import { getProductById } from "@/data-access/product.persistance";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import AddToCartButton from "../AddToCartButton";
 interface ProductPageTypes {
   params: {
     id: string;
@@ -13,8 +13,9 @@ const ProductPage = async ({ params }: ProductPageTypes) => {
   if (error) {
     return redirect("/");
   }
-  console.log(currentProduct);
-
+  if (currentProduct?.products.id === undefined) {
+    return;
+  }
   return (
     <div className="w-[80%]  min-h-[80dvh] m-auto flex flex-col md:flex-row justify-center lg:justify-between items-center gap-10 my-10">
       <Image
@@ -56,12 +57,7 @@ const ProductPage = async ({ params }: ProductPageTypes) => {
           </h3>
         </div>
         <aside className="flex flex-col md:flex-row gap-3 w-full">
-          <Button
-            className="w-full bg-yellow-300 hover:bg-yellow-500 text-black rounded-xl"
-            variant={"destructive"}
-          >
-            Add to cart
-          </Button>
+          <AddToCartButton productId={currentProduct?.products.id} />
         </aside>
       </section>
     </div>

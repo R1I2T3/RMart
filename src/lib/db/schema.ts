@@ -85,15 +85,6 @@ export const product = pgTable(
   })
 );
 
-export const review = pgTable("reviews", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  userId: text("user_id").references(() => user.id),
-  productId: uuid("product_id").references(() => product.id),
-  rating: integer("rating").notNull(),
-  comment: text("comment").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-});
-
 // cart table
 export const Cart = pgTable("cart", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -106,6 +97,7 @@ export const CartItems = pgTable("cartItems", {
   cartId: uuid("cart_id").references(() => Cart.id),
   productId: uuid("product_id").references(() => product.id),
   createdAt: timestamp("created_at").defaultNow(),
+  quantity: integer("quantity").notNull(),
 });
 
 // order tables
