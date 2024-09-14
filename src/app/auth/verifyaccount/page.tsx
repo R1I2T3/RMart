@@ -17,7 +17,7 @@ const VerifyAccountPage = ({ searchParams }: VerifyAccountPageProps) => {
   return (
     <Card className="w-[90%] md:w-[50%] lg:w-[40%]">
       <CardHeader>
-        <CardTitle className="m-auto text-2xl md:text-3xl lg:text-4xl text-green-500 dark:text-green-600">
+        <CardTitle className="m-auto text-2xl md:text-3xl lg:text-4xl text-blue-500 dark:text-blue-600">
           Verify Email
         </CardTitle>
       </CardHeader>

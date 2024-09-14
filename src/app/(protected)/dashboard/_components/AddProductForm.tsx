@@ -61,7 +61,7 @@ const AddProductForm = () => {
           />
         </FormProvider>
         <Button
-          className="w-full bg-green-500 my-3 p-2 hover:bg-green-600"
+          className="w-full bg-blue-500 my-3 p-2 hover:bg-blue-600"
           type="submit"
           disabled={isExecuting}
         >

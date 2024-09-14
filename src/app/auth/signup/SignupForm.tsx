@@ -39,14 +39,14 @@ const SignupForm = () => {
           <div className="flex justify-end">
             <Link
               href={"/auth/login"}
-              className="w-full text-sm hover:text-green-500 hover:underline underline-offset-2 text-right"
+              className="w-full text-sm hover:text-blue-500 hover:underline underline-offset-2 text-right"
             >
               {"Login to account"}
             </Link>
           </div>
 
           <Button
-            className="bg-green-500  hover:bg-green-600 dark:bg-green-600 w-full text-white text-xl"
+            className="bg-blue-500  hover:bg-blue-600 dark:bg-blue-600 w-full text-white text-xl"
             disabled={isExecuting}
           >
             {isExecuting ? "pending..." : "Signup"}

@@ -4,7 +4,7 @@ import UserNavigation from "./UserNavigation";
 import MobileUserNavigation from "./MobileUserNavigation";
 const Header = () => {
   return (
-    <nav className="bg-green-500 dark:bg-green-600 p-5 flex justify-between items-center w-full">
+    <nav className="bg-blue-500 dark:bg-blue-600 p-5 flex justify-between items-center w-full">
       <Image
         src={"/logo.png"}
         alt="logo"

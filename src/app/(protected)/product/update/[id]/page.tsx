@@ -16,7 +16,7 @@ const UpdateProductPage = async ({ params }: Props) => {
   return (
     <Card className="w-[100%] md:w-[70%] lg:w-[50%] shadow-xl  m-auto my-10">
       <CardHeader>
-        <CardTitle className="m-auto text-2xl md:text-3xl lg:text-4xl text-green-500 dark:text-green-600">
+        <CardTitle className="m-auto text-2xl md:text-3xl lg:text-4xl text-blue-500 dark:text-blue-600">
           Edit Product
         </CardTitle>
       </CardHeader>

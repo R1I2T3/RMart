@@ -20,7 +20,7 @@ const AdminSideBar = () => {
             <LayoutDashboard />
           </Button>
         </SheetTrigger>
-        <SheetContent side={"left"} className="bg-green-600">
+        <SheetContent side={"left"} className="bg-blue-600">
           <SheetHeader>
             <SheetTitle>Admin Dashboard</SheetTitle>
             <SheetDescription hidden={true}>

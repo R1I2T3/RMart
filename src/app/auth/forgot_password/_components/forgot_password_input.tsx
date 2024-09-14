@@ -37,7 +37,7 @@ const ForgotPasswordInput = () => {
         <FormProvider {...form}>
           <InputFormControl label="Email" name="email" />
         </FormProvider>
-        <Button className="bg-green-500 hover:bg-green-700 dark:bg-green-600 w-full text-white text-xl">
+        <Button className="bg-blue-500 hover:bg-blue-700 dark:bg-blue-600 w-full text-white text-xl">
           {isExecuting ? "Sending mail" : "Submit"}
         </Button>
       </form>

@@ -26,7 +26,7 @@ const MobileUserNavigation = () => {
     <div className="block md:hidden">
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="bg-green-600 hover:bg-green-700 w-[100%]">
+          <Button className="bg-blue-600 hover:bg-blue-700 w-[100%]">
             <Menu />
           </Button>
         </SheetTrigger>
@@ -36,14 +36,14 @@ const MobileUserNavigation = () => {
             account and remove your data from our servers.
           </SheetDescription>
         </SheetHeader>
-        <SheetContent className="flex flex-col bg-green-600" side={"top"}>
+        <SheetContent className="flex flex-col bg-blue-600" side={"top"}>
           <ul className="flex flex-col gap-3 mt-3">
             <li className="p-3 border-2 rounded-xl border-white">
               <SheetClose asChild>
                 <Link
                   href={"/"}
                   className={` hover:text-white ${
-                    pathname === "/" ? "text-white" : "text-green-200"
+                    pathname === "/" ? "text-white" : "text-blue-200"
                   }`}
                 >
                   Home
@@ -55,7 +55,7 @@ const MobileUserNavigation = () => {
                 <Link
                   href={"/profile"}
                   className={` hover:text-white ${
-                    pathname === "/profile" ? "text-white" : "text-green-200"
+                    pathname === "/profile" ? "text-white" : "text-blue-200"
                   }`}
                 >
                   Profile
@@ -68,9 +68,7 @@ const MobileUserNavigation = () => {
                   <Link
                     href={"/dashboard"}
                     className={` hover:text-white ${
-                      pathname === "/dashboard"
-                        ? "text-white"
-                        : "text-green-200"
+                      pathname === "/dashboard" ? "text-white" : "text-blue-200"
                     }`}
                   >
                     Dashboard

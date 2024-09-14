@@ -18,7 +18,7 @@ const UserNavigation = () => {
         <Link
           href={"/"}
           className={` hover:text-white ${
-            pathname === "/" ? "text-white" : "text-green-200"
+            pathname === "/" ? "text-white" : "text-blue-200"
           }`}
         >
           Home
@@ -28,7 +28,7 @@ const UserNavigation = () => {
         <Link
           href={"/profile"}
           className={` hover:text-white ${
-            pathname === "/profile" ? "text-white" : "text-green-200"
+            pathname === "/profile" ? "text-white" : "text-blue-200"
           }`}
         >
           Profile
@@ -39,7 +39,7 @@ const UserNavigation = () => {
           <Link
             href={"/dashboard"}
             className={` hover:text-white ${
-              pathname === "/dashboard" ? "text-white" : "text-green-200"
+              pathname === "/dashboard" ? "text-white" : "text-blue-200"
             }`}
           >
             Dashboard

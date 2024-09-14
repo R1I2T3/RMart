@@ -7,11 +7,11 @@ const SocialAuthFooter = () => {
   return (
     <>
       <div className="flex flex-row justify-between items-center">
-        <Separator className="w-[45%] bg-green-500" />
+        <Separator className="w-[45%] bg-blue-500" />
         <p>OR</p>
-        <Separator className="w-[45%] bg-green-500" />
+        <Separator className="w-[45%] bg-blue-500" />
       </div>
-      <div className="w-full h-[45px] bg-white  hover:bg-green-200 flex justify-center items-center">
+      <div className="w-full h-[45px] bg-white  hover:bg-blue-200 flex justify-center items-center">
         <Link href="/api/auth/google" className="">
           <Image
             src={"/google-icon.png"}

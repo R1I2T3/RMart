@@ -41,7 +41,7 @@ const VerifyAccount = () => {
           <OTP />
         </FormProvider>
         <Button
-          className="bg-green-500  hover:bg-green-600 dark:bg-green-600 w-full text-white text-xl disabled:bg-green-800"
+          className="bg-blue-500  hover:bg-blue-600 dark:bg-blue-600 w-full text-white text-xl disabled:bg-blue-800"
           disabled={isExecuting}
         >
           {isExecuting ? "Verifying account" : "Verify account"}

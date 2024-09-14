@@ -36,18 +36,18 @@ const LoginForm = () => {
           <div className="flex justify-between items-center">
             <Link
               href={"/auth/forgot_password"}
-              className="text-sm hover:text-green-500 hover:underline underline-offset-2"
+              className="text-sm hover:text-blue-500 hover:underline underline-offset-2"
             >
               {"Forgot password"}
             </Link>
             <Link
               href={"/auth/signup"}
-              className="text-sm hover:text-green-500 hover:underline underline-offset-2"
+              className="text-sm hover:text-blue-500 hover:underline underline-offset-2"
             >
               {"Create a account"}
             </Link>
           </div>
-          <Button className="bg-green-500 hover:bg-green-700 dark:bg-green-600 w-full text-white text-xl">
+          <Button className="bg-blue-500 hover:bg-blue-700 dark:bg-blue-600 w-full text-white text-xl">
             {isExecuting ? "Login..." : "Login"}
           </Button>
           <SocialAuthFooter />

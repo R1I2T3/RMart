@@ -35,7 +35,7 @@ const NewPasswordForm = () => {
           <InputFormControl label="Confirm Password" name="confirm_password" />
         </FormProvider>
         <Button
-          className="bg-green-500 hover:bg-green-700 dark:bg-green-600 w-full text-white text-xl disabled:bg-green-800"
+          className="bg-blue-500 hover:bg-blue-700 dark:bg-blue-600 w-full text-white text-xl disabled:bg-blue-800"
           disabled={isExecuting}
         >
           {isExecuting ? "Resetting Password" : "Reset Password"}

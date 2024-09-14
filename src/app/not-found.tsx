@@ -9,7 +9,7 @@ const NotFound = () => {
       <MessageSquareWarning size={100} className="text-yellow-500" />
       <h1 className="text-2xl">Page not found</h1>
       <button
-        className="text-green-500 hover:underline underline-offset-2"
+        className="text-blue-500 hover:underline underline-offset-2"
         onClick={() => router.back()}
       >
         Go back to previous page
