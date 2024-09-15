@@ -20,3 +20,17 @@ interface OrderItemsTypes {
 export const InsertOrderItems = async (orderItems: OrderItemsTypes[]) => {
   await db.insert(orderItem).values(orderItems);
 };
+
+export const getUserOrders = async (userId: string) => {
+  const orders = await db.select().from(order).where(eq(order.user_id, userId));
+  return orders;
+};
+
+export const getOrderDetails = async (orderId: string) => {
+  const orderDetails = await db
+    .select()
+    .from(order)
+    .innerJoin(orderItem, eq(orderItem.orderId, order.id))
+    .where(eq(order.id, orderId));
+  return orderDetails;
+};

@@ -51,7 +51,7 @@ const ProfileSideBar = () => {
             <li className="w-full border-white border-2 rounded-xl p-3">
               <SheetClose asChild>
                 <Link
-                  href={"/profile/cart"}
+                  href={"/profile/orders"}
                   className="flex gap-2 text-white text-xl"
                 >
                   Orders <ListOrdered />
