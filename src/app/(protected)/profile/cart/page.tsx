@@ -1,5 +1,5 @@
 import { getCartItems } from "@/data-access/cart.persistance";
-import React, { use } from "react";
+import React from "react";
 import { ShoppingCart } from "lucide-react";
 import {
   Card,
@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import CartItem from "./CartItem";
 import { validateRequest } from "@/lib/auth/VerifyUserisAuthenticatedOrNot";
 import { redirect } from "next/navigation";
+import AddToOrderButton from "./AddToOrder";
 const CartPage = async () => {
   const { user } = await validateRequest();
   if (!user) {
@@ -63,9 +64,10 @@ const CartPage = async () => {
               <span>Total</span>
               <span className="text-primary">{TotalPrice}</span>
             </div>
-            <Button className="w-full mt-4 bg-blue-600" size="lg">
-              Proceed to Checkout
-            </Button>
+            <AddToOrderButton
+              totalAmount={TotalPrice.toString()}
+              cartId={cartItems[0].cartId}
+            />
           </CardFooter>
         )}
       </Card>

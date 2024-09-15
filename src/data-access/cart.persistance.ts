@@ -86,3 +86,10 @@ export const decrementCartItem = async (
 export const DeleteCartItem = async (cartItemId: string) => {
   await db.delete(CartItems).where(eq(CartItems.id, cartItemId));
 };
+
+export const emptyCart = async (cartId: string) => {
+  await db.transaction(async (tx) => {
+    await tx.delete(CartItems).where(eq(CartItems.cartId, cartId));
+    await tx.delete(Cart).where(eq(Cart.id, cartId));
+  });
+};
