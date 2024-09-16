@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { order, orderItem } from "@/lib/db/schema";
+import { order, orderItem, product } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
 export const CreateOrder = async (userId: string, totalAmount: string) => {
@@ -31,6 +31,7 @@ export const getOrderDetails = async (orderId: string) => {
     .select()
     .from(order)
     .innerJoin(orderItem, eq(orderItem.orderId, order.id))
+    .innerJoin(product, eq(product.id, orderItem.productId))
     .where(eq(order.id, orderId));
-  return orderDetails;
+  return { order: orderDetails };
 };

@@ -22,7 +22,7 @@ const OrdersPage = async () => {
   }
   const orders = await getUserOrders(user.id);
   return (
-    <div className="container mx-auto p-6  min-h-[80vh]">
+    <div className="container mx-auto p-6  min-h-[80vh] w-[90dvw]">
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="text-2xl font-bold flex items-center">
