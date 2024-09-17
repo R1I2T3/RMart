@@ -27,7 +27,7 @@ const ProductSection = ({
   category = "",
   error = "",
 }: ProductsPageSectionProps) => {
-  const [pages, setPages] = useState<Products[]>([...(initialData || [])]);
+  const [pages, setPages] = useState<Products[]>([...initialData]);
   const [ref, inView] = useInView();
   const [page, setPage] = useState(0);
   const [canFetch, setCanFetch] = useState(true);
@@ -50,11 +50,13 @@ const ProductSection = ({
           result.data?.products?.length == 0 ||
           result.data?.products?.length % 10 !== 0
         ) {
-          console.log("I am here");
           setCanFetch(false);
         }
-        //  @ts-ignore
-        if (result.data?.products?.length >= 0) {
+        if (
+          result.data &&
+          result.data.products &&
+          result.data.products.length >= 0
+        ) {
           setPages((prev) => [
             ...(prev?.length ? prev : []),
             ...result.data?.products,

@@ -21,7 +21,8 @@ export function objectToFormData(obj: Record<string, any>): FormData {
   return formData;
 }
 
-export function formatDate(date: Date): string {
+export function formatDate(date: Date | null): string {
+  if (date === null) return "";
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const months = [
     "Jan",
