@@ -46,10 +46,13 @@ const ProfilePage = async () => {
               <ProfileField
                 icon={<Calendar className="text-blue-400" />}
                 label="Joined"
-                value={new Date(currentUser?.createdAt).toLocaleDateString(
-                  "en-US",
-                  { year: "numeric", month: "long", day: "numeric" }
-                )}
+                value={new Date(
+                  currentUser?.createdAt as Date
+                ).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               />
             </div>
           </div>

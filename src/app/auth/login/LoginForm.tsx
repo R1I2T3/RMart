@@ -32,7 +32,7 @@ const LoginForm = () => {
       <form className="w-full space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <FormProvider {...form}>
           <InputFormControl label="Email" name="email" />
-          <InputFormControl label="Password" name="password" />
+          <InputFormControl label="Password" name="password" type="password" />
           <div className="flex justify-between items-center">
             <Link
               href={"/auth/forgot_password"}

@@ -4,7 +4,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 const ProductTablePagination = ({ table }: { table: any }) => {
   const router = useRouter();
   const searchParams = useSearchParams().toString().split("=");
-  const searchParamObj = { [searchParams[0]]: Number(searchParams[1]) };
+  const searchParamObj = {
+    offset: Number(searchParams.length > 1 ? searchParams[1] : "0"),
+  };
+  console.log(searchParamObj);
 
   return (
     <div className="space-x-2">

@@ -22,7 +22,7 @@ const CartPage = async () => {
   }
   const cartItems = await getCartItems(user.id);
   const TotalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + +item.price * item.quantity,
     0
   );
   return (

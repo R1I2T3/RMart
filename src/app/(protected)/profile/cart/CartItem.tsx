@@ -7,7 +7,7 @@ import { useAction } from "next-safe-action/hooks";
 import { RemoveCartItem } from "../action/RemoveCartItem";
 import { IncrementCartItemAction } from "../action/IncrementCartItem";
 import { DecrementAction } from "../action/DecrementCartItem";
-const CartItem = ({ item }) => {
+const CartItem = ({ item }: { item: any }) => {
   const { executeAsync: addToCartFunc, isExecuting: isAdding } = useAction(
     IncrementCartItemAction
   );

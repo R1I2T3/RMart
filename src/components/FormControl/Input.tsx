@@ -18,6 +18,8 @@ const InputFormControl = ({
   type?: string;
 }) => {
   const form = useFormContext();
+  console.log(type);
+
   return (
     <FormField
       control={form.control}

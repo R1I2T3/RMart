@@ -16,9 +16,6 @@ const HomePage = async ({ searchParams: { q, category } }: HomePageProps) => {
     q,
     offset: 0,
   });
-  if (!products) {
-    return notFound();
-  }
   return (
     <div className="flex flex-col justify-center items-center">
       <HomeScreenSearchBar search={q} />
@@ -31,7 +28,7 @@ const HomePage = async ({ searchParams: { q, category } }: HomePageProps) => {
           initialData={products}
           q={q}
           category={category}
-          error={error}
+          error={error as string}
         />
       </li>
     </div>

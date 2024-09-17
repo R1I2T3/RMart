@@ -13,10 +13,11 @@ interface ProductsPageSectionProps {
   error?: string;
 }
 interface Products {
+  id: string; // Changed from number to string
   name: string;
-  category: string;
   productImage: string;
-  id: number;
+  category: string;
+  created_at: Date | null;
   price: string;
   quantity: number;
 }
@@ -27,7 +28,7 @@ const ProductSection = ({
   category = "",
   error = "",
 }: ProductsPageSectionProps) => {
-  const [pages, setPages] = useState<Products[]>([...initialData]);
+  const [pages, setPages] = useState<Products[]>([...(initialData || [])]);
   const [ref, inView] = useInView();
   const [page, setPage] = useState(0);
   const [canFetch, setCanFetch] = useState(true);
@@ -57,10 +58,11 @@ const ProductSection = ({
           result.data.products &&
           result.data.products.length >= 0
         ) {
-          setPages((prev) => [
-            ...(prev?.length ? prev : []),
-            ...result.data?.products,
-          ]);
+          setPages((prev) => {
+            const currentPages = prev ?? [];
+            const newProducts = result.data?.products ?? [];
+            return [...currentPages, ...newProducts];
+          });
           setPage((prev) => prev + 1);
         }
       };
@@ -87,7 +89,7 @@ const ProductSection = ({
                 name={product.name}
                 category={product.category}
                 productImage={product.productImage}
-                productId={product.id}
+                productId={product.id.toString()}
                 price={product.price}
                 quantity={product.quantity}
               />

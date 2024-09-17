@@ -35,7 +35,7 @@ const SignupForm = () => {
         <FormProvider {...form}>
           <InputFormControl label="Email" name="email" />
           <InputFormControl label="Username" name="username" />
-          <InputFormControl label="Password" name="password" />
+          <InputFormControl label="Password" name="password" type="password" />
           <div className="flex justify-end">
             <Link
               href={"/auth/login"}

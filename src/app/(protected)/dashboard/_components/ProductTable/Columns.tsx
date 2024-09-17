@@ -29,7 +29,11 @@ export const columns: ColumnDef<Product>[] = [
     header: "Product Image",
     cell: (info) => (
       <Image
-        src={info.getValue() || ""}
+        src={
+          (typeof info.getValue() === "string"
+            ? info.getValue()
+            : "/path/to/placeholder-image.jpg") as string
+        }
         alt={`Image of ${info.row.original.name}`}
         width={100}
         height={100}
@@ -48,7 +52,7 @@ export const columns: ColumnDef<Product>[] = [
     accessorKey: "created_at",
     header: "CreatedAt",
     cell: (info) => {
-      return formatDate(info.getValue());
+      return formatDate(info.getValue() as Date);
     },
   },
 
